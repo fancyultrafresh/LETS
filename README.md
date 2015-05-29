@@ -1,4 +1,4 @@
-#Let's
+#Let's [![Build Status](https://travis-ci.org/fancyultrafresh/LETS.svg?branch=add-travis)](https://travis-ci.org/fancyultrafresh/LETS)
 ## A Group Decision Making App
 
 #Group Agreement
