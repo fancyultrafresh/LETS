@@ -5,15 +5,18 @@ gem 'rails', '4.2.1'
 
 gem 'rails-api'
 
-gem 'spring', :group => :development
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
 
+gem 'pg'
 
-gem 'sqlite3'
 
 
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -26,3 +29,18 @@ gem 'sqlite3'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  gem 'spring'
+  gem 'better_errors'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'simplecov', :require => false
+end
