@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150529160715) do
   create_table "proposals", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.text     "content"
     t.string   "status"
-    t.uuid     "thread_id",  default: "8b9e904f-1c7d-41e1-bce5-6e7784cec804", null: false
+    t.uuid     "thread_id",  default: "9a1e1cac-aa1a-4e8b-bce4-20ac8119f08e", null: false
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
   end
