@@ -24,5 +24,3 @@ Use trello and slack - do it!
 Adhere to git/github best practices!
 good commits
 another user reviews pull requests and merges
-
-<tt>rake doc:app</tt>.
