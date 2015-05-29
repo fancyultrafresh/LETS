@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529160715) do
+ActiveRecord::Schema.define(version: 20150529193217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20150529160715) do
   create_table "proposals", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.text     "content"
     t.string   "status"
-    t.uuid     "thread_id",  default: "9a1e1cac-aa1a-4e8b-bce4-20ac8119f08e", null: false
-    t.datetime "created_at",                                                  null: false
-    t.datetime "updated_at",                                                  null: false
+    t.uuid     "thread_id",      default: "40634685-aea9-475c-9b93-74f1e38a9c7d", null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.string   "thread_context"
   end
 
   add_index "proposals", ["thread_id"], name: "index_proposals_on_thread_id", using: :btree
