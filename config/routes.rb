@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :decisions, only: [:create, :update] do
+    resources :decisions, only: [:index, :show, :create, :update] do
       resources :participations, only: [:create, :destroy]
     end
   end
