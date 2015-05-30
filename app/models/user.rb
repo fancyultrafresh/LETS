@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :proposal_users
-  has_many :proposals
-  has_many :queries, through: :proposal_users
+  has_many :participations
+  has_many :decisions, through: :participations
+  has_many :proposals, through: :participations
+  has_many :queries, through: :participations
 end
