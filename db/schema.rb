@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150529230931) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "participations", force: :cascade do |t|
+  create_table "participations", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "decision_id"
     t.datetime "created_at",  null: false
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 20150529230931) do
   create_table "proposals", force: :cascade do |t|
     t.string   "status"
     t.string   "proposed_idea"
-    t.integer  "participation_id"
+    t.uuid     "participation_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
   create_table "queries", force: :cascade do |t|
     t.integer  "proposal_id"
-    t.integer  "participation_id"
+    t.uuid     "participation_id"
     t.string   "status"
     t.datetime "respond_by"
     t.datetime "responded_at"
@@ -52,9 +52,12 @@ ActiveRecord::Schema.define(version: 20150529230931) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "phone_number"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "proposals", "participations"
+  add_foreign_key "queries", "participations"
 end
