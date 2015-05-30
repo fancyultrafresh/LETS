@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :sessions, only: [:new, :create, :destroy]
-    resources :users, only: [:new, :create ]
+    resources :sessions, only: [:create, :destroy]
+    resources :users, only: [:create ]
 
-    resources :decisions, only: [:new, :create, :update] do
-      resources :proposals, only: [:new, :create, :update] do
-        resources :queries, only: [:new, :create, :update]
+    resources :users, only: [:create] do
+      resources :decisions, only: [:create, :update, :index]
+    end
+
+    resources :decisions, only: [:create, :update, :show] do
+      resources :proposals, only: [:create, :update, :show] do
+        resources :queries, only: [:create, :update]
       end
     end
 
-    resources :decisions, only: [:new, :create, :update] do
-      resources :participations, only: [:new, :create, :destroy]
+    resources :decisions, only: [:create, :update] do
+      resources :participations, only: [:create, :destroy]
     end
   end
 end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
