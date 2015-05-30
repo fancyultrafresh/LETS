@@ -7,7 +7,7 @@ class Api::DecisionsController < ApplicationController
 
   def show
     decision = Decision.find(params[:id])
-    render json: decision.as_json(include: :participations)#.as_json(include: :proposals)
+    render json: decision.to_json(include: :participations)#.as_json(include: :proposals)
     # render :json => decision.to_json(:include => {:participations => {:include => :proposals}, :seasons => {}, :habitats => {}, :image_holders => {}})
   end
 

@@ -1,3 +1,3 @@
 class DecisionSerializer < ActiveModel::Serializer
-  attributes :context
+  attributes :context, :is_active, :participants
 end
