@@ -3,7 +3,7 @@ class CreateQueries < ActiveRecord::Migration
     create_table :queries do |t|
       t.belongs_to :proposal
       t.uuid       :participation_id
-      t.string     :status #accepts only [yes, no, meh, i'm out] are these correct?
+      t.string     :status #accepts only [yes, no, meh] 'meh' not MVP
       t.datetime   :respond_by
       t.datetime   :responded_at
 

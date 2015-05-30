@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  namespace :api do
+    resources :sessions, only: [:create, :destroy]
+    resources :users, only: [:create ]
+
+    resources :users, only: [:create] do
+      resources :decisions, only: [:create, :update, :index]
+    end
+
+    resources :decisions, only: [:create, :update, :show] do
+      resources :proposals, only: [:create, :update, :show] do
+        resources :queries, only: [:create, :update]
+      end
+    end
+
+    resources :decisions, only: [:create, :update] do
+      resources :participations, only: [:create, :destroy]
+    end
+  end
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +72,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+
