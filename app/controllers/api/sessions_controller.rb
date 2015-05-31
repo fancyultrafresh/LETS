@@ -1,5 +1,8 @@
 class Api::SessionsController < ApplicationController
 
+# respond_to :json
+  skip_before_filter :verify_authenticity_token #rack-cors shite
+
   def create
     if user = User.find_by(email: params[:session][:email])
       user.authenticate(params[:session][:password])
