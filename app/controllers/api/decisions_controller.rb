@@ -1,4 +1,5 @@
 class Api::DecisionsController < ApplicationController
+  skip_before_filter :verify_authenticity_token #rack-cors shite
   # respond_to :json
 
   def index
@@ -15,8 +16,24 @@ class Api::DecisionsController < ApplicationController
     render json: Decision.find(params[:id]).proposals.find_by_status("open")
   end
 
+  def create
+    user = User.find(params[:user_id])
+    decision = user.decisions.new(decision_params)
+
+    if decision.save
+      Participation.create(user: user, decision: decision)
+      head 200
+    else
+      head 500
+    end
+  end
+
   def default_serializer_options
     { root: false }
   end
 
+  private
+  def decision_params
+    params.require(:decision).permit(:context)
+  end
 end
