@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
     # match '/decisions/:id/activeproposal' => 'decisions#activeproposal', :via => :get, as: "decision_active_proposal"
     get '/decisions/:id/activeproposal' => 'decisions#activeproposal', as: "decision_active_proposal"
-
   end
 end
   # The priority is based upon order of creation: first created -> highest priority.
