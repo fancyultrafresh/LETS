@@ -1,4 +1,4 @@
-class Api::SessionsController < ApplicationController
+class SessionsController < ApplicationController::API
 
 # respond_to :json
   skip_before_filter :verify_authenticity_token #rack-cors shite
