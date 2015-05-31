@@ -2,13 +2,17 @@ class Api::DecisionsController < ApplicationController
   # respond_to :json
 
   def index
-    render json: Decision.all
+    render json: User.find(params[:user_id]).decisions
+    # render json: Participation.where(user_id: params[:user_id])
   end
 
   def show
     decision = Decision.find(params[:id])
-    render json: decision.to_json(include: :participations)#.as_json(include: :proposals)
-    # render :json => decision.to_json(:include => {:participations => {:include => :proposals}, :seasons => {}, :habitats => {}, :image_holders => {}})
+    render json: decision#.to_json(include: :participations)#.as_json(include: :proposals)
+  end
+
+  def activeproposal
+    render json: Decision.find(params[:id]).proposals.find_by_status("open")
   end
 
   def default_serializer_options
@@ -16,10 +20,3 @@ class Api::DecisionsController < ApplicationController
   end
 
 end
-# format.json  {
-#     render :json => @birds.to_json(:include => {:bird_colorations => {:include => :color}, :seasons => {}, :habitats => {}, :image_holders => {}}) }
-
-# render :json => @booking, :include => [:paypal,
-#                                        :boat_people,
-#                                        :boat => {:only => :name, :include => {:port => {:only => :name, :include => {:city => {:only => :name, :include => {:country => {:only => :name}}}}},
-#                                                 :boat_model => {:only => :name, :include => {:boat_type => {:only => :name}}}}}]
