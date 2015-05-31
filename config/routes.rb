@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     resources :decisions, only: [:index, :show, :create, :update] do
       resources :participations, only: [:index,:create, :destroy]
     end
-    match '/decisions/:id/activeproposal' => 'decisions#activeproposal', :via => :get, as: "decision_active_proposal"
+
+    # match '/decisions/:id/activeproposal' => 'decisions#activeproposal', :via => :get, as: "decision_active_proposal"
+    get '/decisions/:id/activeproposal' => 'decisions#activeproposal', as: "decision_active_proposal"
+
   end
 end
   # The priority is based upon order of creation: first created -> highest priority.
