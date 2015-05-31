@@ -34,6 +34,7 @@ group :development do
   gem 'spring'
   gem 'better_errors'
   gem "binding_of_caller"
+  gem "table_print"
 end
 
 group :development, :test do
