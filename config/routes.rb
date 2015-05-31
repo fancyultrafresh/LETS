@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create ]
 
     resources :users, only: [:create] do
-      resources :decisions, only: [:create, :update, :index]
+      resources :decisions, only: [:create, :update, :index, :show]# do
+        # resources :participations, only: [:index]
+      # end
     end
 
     resources :decisions, only: [:create, :update, :show] do
@@ -13,9 +15,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :decisions, only: [:create, :update] do
-      resources :participations, only: [:create, :destroy]
+    resources :decisions, only: [:index, :show, :create, :update] do
+      resources :participations, only: [:index,:create, :destroy]
     end
+    match '/decisions/:id/activeproposal' => 'decisions#activeproposal', :via => :get, as: "decision_active_proposal"
   end
 end
   # The priority is based upon order of creation: first created -> highest priority.
