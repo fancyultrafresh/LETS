@@ -9,21 +9,9 @@ class ApplicationController < ActionController::API
   end
   helper_method :current_user
 
-  # def is_author(author_id)
-  #   if current_user
-  #     current_user.id == author_id
-  #   end
-  # end
-  # helper_method :is_author
-
   def logged_in?
     !!current_user
   end
   helper_method :logged_in?
-
-  # def authenticate_user
-  #   redirect_to(new_session_path) unless logged_in?
-  # end
-
 
 end
