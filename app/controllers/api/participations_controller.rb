@@ -12,9 +12,14 @@ class Api::ParticipationsController < ApplicationController
     user = User.find_by_email(params[:user][:email])
     if user
       user.decisions << Decision.find(params[:decision_id])
-      head 200
+      render json: {
+        status: 200,
+        message: "User added to Decision!"
+      }.to_json
     else
-      head 455
+      render status:500, json: {
+        message: "User not found."
+      }.to_json
     end
   end
 
