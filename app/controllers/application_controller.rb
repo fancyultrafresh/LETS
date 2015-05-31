@@ -21,9 +21,9 @@ class ApplicationController < ActionController::API
   end
   helper_method :logged_in?
 
-  def authenticate_user
-    redirect_to(new_session_path) unless logged_in?
-  end
+  # def authenticate_user
+  #   redirect_to(new_session_path) unless logged_in?
+  # end
 
 
 end
