@@ -3,4 +3,6 @@ class User < ActiveRecord::Base
   has_many :decisions, through: :participations
   has_many :proposals, through: :participations
   has_many :queries, through: :participations
+
+  has_secure_password
 end
