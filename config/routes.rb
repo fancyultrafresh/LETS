@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
+
+    get "login" => "sessions#create", :as => "login"
+    get "logout" => "sessions#destroy", :as => "logout"
+
     resources :sessions, only: [:create, :destroy]
     resources :users, only: [:create ]
 
