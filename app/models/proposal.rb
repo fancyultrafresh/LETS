@@ -11,6 +11,6 @@ class Proposal < ActiveRecord::Base
   end
 
   validates_presence_of :status, :proposed_idea, :participation_id
-  # validates_inclusion_of :status, :in => %w(yes no open canceled)
+  # validates_inclusion_of :status, :in => %w(accepted refused open)
 
 end
