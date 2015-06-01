@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
 
 gem 'rails', '4.2.1'
 
@@ -11,6 +12,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
 gem 'pg'
+
+gem 'rails_12factor'
 
 gem 'rack-cors', require: 'rack/cors'
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
