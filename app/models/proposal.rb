@@ -9,4 +9,8 @@ class Proposal < ActiveRecord::Base
   def decision
     @_decision ||= self.participation.decision
   end
+
+  validates_presence_of :status, :proposed_idea, :participation_id
+  # validates_inclusion_of :status, :in => %w(yes no open canceled)
+
 end

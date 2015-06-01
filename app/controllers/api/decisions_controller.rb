@@ -1,6 +1,7 @@
 class Api::DecisionsController < ApplicationController
+
+# respond_to :json
   skip_before_filter :verify_authenticity_token #rack-cors shite
-  # respond_to :json
 
   def index
     render json: User.find(params[:user_id]).decisions
