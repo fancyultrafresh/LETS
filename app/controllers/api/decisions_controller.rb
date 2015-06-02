@@ -9,8 +9,9 @@ class Api::DecisionsController < ApplicationController
   end
 
   def show
-    decision = Decision.find(params[:id])
-    render json: decision#.to_json(include: :participations)#.as_json(include: :proposals)
+    render json: BigObjectSerializer.build(Decision.find(params[:id]))
+    # decision = Decision.find(params[:id])
+    # render json: decision#.to_json(include: :participations)#.as_json(include: :proposals)
   end
 
   def activeproposal
@@ -36,5 +37,33 @@ class Api::DecisionsController < ApplicationController
   private
   def decision_params
     params.require(:decision).permit(:context)
+  end
+end
+
+
+class BigObjectSerializer
+  ATTRIBUTES = {
+    decision: [:context, :is_active],
+    active_proposal: [:proposed_idea, :status,:participation_id],
+    participation: [:id, :name]# , :user[:name, :email, :phone_number]??
+  }
+
+  def self.build(decision)
+    data = {}
+
+    active_proposal = decision.active_proposal
+    voters = active_proposal.queries.pluck(:participation_id).sort.map {|id| Participation.find(id)}
+    non_voters = (active_proposal.participations - voters).sort
+    ordered_participations = non_voters + voters
+
+
+    data = data.merge(decision.slice(*ATTRIBUTES[:decision]))
+    data[:active_proposal] = active_proposal.slice(*ATTRIBUTES[:active_proposal])
+    # data[:proposals] = decision.proposals.map do |prop|
+    #   prop_data = {}
+    #   prop_data = prop_data.merge(prop.slice(*ATTRIBUTES[:proposal]))
+    #   prop_data[:user] = prop.user.slice(*ATTRIBUTES[:user])
+    # end
+    data
   end
 end
